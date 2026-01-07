@@ -8,6 +8,12 @@ from app.routers import users
 # Set up FastAPI. We'll use this "app" variable to do FastAPI stuff below
 app = FastAPI()
 
+# Setting CORS (Cross Origin Resource Sharing) policy
+# origins = ["*"] # Allow all origins (not recommended for production)
+origins = ["http://localhost"] # Allows requests only from localhost
+
+#TODO for Ben: CORS middleware setup
+
 # Global custom Exception Handler
 # All Exceptions raised in the routers get handled here
 @app.exception_handler(HTTPException)
@@ -16,7 +22,6 @@ async def custom_http_exception_handler(request:Request, exception:HTTPException
         status_code=exception.status_code,
         content={"message":exception.detail}
     )
-
 
 # Import routers here
 app.include_router(users.router)
