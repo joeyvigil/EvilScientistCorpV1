@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from app.models.item_model import ItemModel
 
@@ -41,13 +41,22 @@ async def get_all_items():
 
 # Subtract from item inventory (PATCH request)
 # This function only updates inventory, so it should be a PATCH request, not a PUT
-@router.patch("/{item_id}/subtract_inventory/{amount}")
-async def subtract_from_inventory(item_id:int, amount:int):
+@router.patch("{item_id}/decrement_from_inventory/{amount}")
+async def decrement_from_inventory(item_id:int, amount:int):
 
-    # Check if item exists
+    # Stolen from Yucheng 2026
 
-    # Make sure inventory won't be < 0
-
-    # Subtract from inventory and return a message with the new inventory
-
-    pass
+    # Check if the item exists
+    if item_id in item_database:
+        # Save the item so we can access the data
+        curr_item = item_database[item_id]
+        # Make sure inventory won't be < 0
+        if curr_item.inventory >= amount:
+            curr_item.inventory -= amount
+            return {
+                "message": f"{curr_item.name} inventory successfully updated!",
+                "inventory": curr_item.inventory
+            }
+        # 409 - conflict: used when there's a conflict between the request and the state of the resource
+        raise HTTPException(status_code=409, detail=f"Item with ID {item_id} has insufficient inventory.")
+    raise HTTPException(status_code=404, detail=f"Item with ID {item_id} not found.")
