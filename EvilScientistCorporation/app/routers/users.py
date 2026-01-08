@@ -7,7 +7,7 @@ from app.models.user_model import UserModel
 # We'll import this in main to make these endpoints accessible
 router = APIRouter(
     prefix="/users", # HTTP requests ending in /users will be directed to this router
-    tags=["users"] # This groups this routers endpoints under "users" in the /docs UI
+    tags=["users"] # This groups this router's endpoints under "users" in the /docs UI
 )
 
 # Temporary DB - just a python map of User models

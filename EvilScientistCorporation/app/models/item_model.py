@@ -5,9 +5,7 @@ from pydantic import BaseModel, Field
 # Check user_model for relevant notes
 
 class ItemModel(BaseModel):
-    # Optional - another way to make this value optional
-    # like setting "= None" like we did in UserModel
-    id: Optional[int, Field(gt=0)]
+    id: Annotated[int, Field(gt=0)] = None
     name: Annotated[str, Field(min_length=3, max_length=50)]
     description: Annotated[str, Field(min_length=10, max_length=100)]
     # ge = greater than or equal to

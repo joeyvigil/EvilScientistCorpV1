@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
-from app.routers import users
+from app.routers import users, items
 
 # Set up FastAPI. We'll use this "app" variable to do FastAPI stuff below
 app = FastAPI()
@@ -25,6 +25,7 @@ async def custom_http_exception_handler(request:Request, exception:HTTPException
 
 # Import routers here
 app.include_router(users.router)
+app.include_router(items.router)
 
 # Generic sample endpoint (GET request that just returns a message)
 @app.get("/")
