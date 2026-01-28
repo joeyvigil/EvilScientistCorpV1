@@ -7,7 +7,10 @@ This is a simple FASTAPI application that simulates an evil scientist's laborato
     ```bash
     git clone https://github.com/joeyvigil/EvilScientistCorpV1
     ```
-2. Open terminal in base directory:
+2. CD into the project directory:
+    ```bash
+    cd EvilScientistCorporation
+    ```
 
 3. Install the required dependencies:
     ```bash
@@ -16,5 +19,5 @@ This is a simple FASTAPI application that simulates an evil scientist's laborato
     ```
 4. Start the FASTAPI server:
     ```bash
-    uvicorn main:app --reload
+    uvicorn app.main:app --reload
     ```
