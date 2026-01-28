@@ -7,10 +7,7 @@ This is a simple FASTAPI application that simulates an evil scientist's laborato
     ```bash
     git clone https://github.com/joeyvigil/EvilScientistCorpV1
     ```
-2. CD into the project directory:
-    ```bash
-    cd EvilScientistCorporation
-    ```
+2. Open terminal in base directory on vs code
 
 3. Install the required dependencies:
     ```bash
@@ -21,3 +18,6 @@ This is a simple FASTAPI application that simulates an evil scientist's laborato
     ```bash
     uvicorn app.main:app --reload
     ```
+    to close the server, press `CTRL + C` in the terminal.
+
+5. Open your browser and navigate to `http://127.0.0.1:8000/docs` to access the interactive API documentation.
